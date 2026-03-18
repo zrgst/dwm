@@ -1,0 +1,17 @@
+# Binærfiler (selve programmet)
+dwm
+
+# Objektfiler (mellomlagring fra kompilering)
+*.o
+
+# Midlertidige filer fra teksteditoren (f.eks. vim eller emacs)
+*~
+*.swp
+*.swo
+
+# Patch-rester (hvis en patch feilet tidligere)
+*.rej
+*.orig
+
+# Eventuelle andre kompilerte filer
+core

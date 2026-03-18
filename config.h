@@ -1,4 +1,16 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
+
+/*
+ * Oppdateringsrater.
+ * Økes for å match skjermkort med høyere Hz enn vanlig
+ * */
+static unsigned int doubleclicktimeout = 300;
+static unsigned int tripleclicktimeout = 600;
+
+/* Lavere input-lag  */
+static int xfps = 120;
+static int actionfps = 30;
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -8,15 +20,15 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=14" };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=14";
-static const char col_gray1[]       = "#1a1b26";
-static const char col_gray2[]       = "#414868";
-static const char col_gray3[]       = "#a9b1d6";
-static const char col_gray4[]       = "#c0caf5";
-static const char col_cyan[]        = "#7aa2f7";
+static const char col_bg[]       = "#1a1b26";
+static const char col_fg[]       = "#c0caf5";
+static const char col_dark_gray[]       = "#414868";
+static const char col_blue[]       = "#2ac3de";
+static const char col_magenta[]        = "#bb9af7";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_fg, col_bg, col_dark_gray },
+	[SchemeSel]  = { col_magenta, col_bg,  col_blue  },
 };
 
 /* tagging */
@@ -99,6 +111,12 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/* Snarveier */
+	{ 0, 		XF86XK_AudioLowerVolume,   spawn, 	   SHCMD("pamixer -d 5") },
+	{ 0, 		XF86XK_AudioRaiseVolume,   spawn, 	   SHCMD("pamixer -i 5") },
+	{ 0, 		XF86XK_AudioMute,          spawn, 	   SHCMD("pamixer -t") },
+	{ MODKEY, 	XF86XK_AudioMute, 	   spawn,          SHCMD("pavucontrol") },
+	{ MODKEY|ShiftMask, 	XF86XK_AudioMute, 	   spawn,          SHCMD("pamixer --default-source -t") },
 };
 
 /* button definitions */
