@@ -59,7 +59,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -71,12 +71,16 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
+static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu=dmenu -i", NULL };
+static const char *zrgstmenucmd[] = { "zrgst_system_menu", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *flameshotcmd[] = { "flameshot", "gui", NULL };
+static const char *powermenu[] = { "/home/zrgst/.local/bin/powermenu", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = zrgstmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -117,6 +121,8 @@ static const Key keys[] = {
 	{ 0, 		XF86XK_AudioMute,          spawn, 	   SHCMD("pamixer -t") },
 	{ MODKEY, 	XF86XK_AudioMute, 	   spawn,          SHCMD("pavucontrol") },
 	{ MODKEY|ShiftMask, 	XF86XK_AudioMute, 	   spawn,          SHCMD("pamixer --default-source -t") },
+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	   {.v = flameshotcmd } },
+	{ MODKEY,			XK_Escape, spawn,	   {.v = powermenu } },
 };
 
 /* button definitions */
