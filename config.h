@@ -13,8 +13,8 @@ static int xfps = 120;
 static int actionfps = 30;
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 5;       /* Gap size in pixels */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int gappx     = 8;       /* Gap size in pixels */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -39,13 +39,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class           		instance         title       tags mask     isfloating   monitor */
+	{ "Gimp",          		NULL,            NULL,       0,            1,           -1 },
+	{ "Firefox",       		NULL,            NULL,       1 << 8,       0,           -1 },
+	{ "Virt-manager",  		NULL,            NULL,       1 << 6,       0,           -1 },
+	{ "steam_app_default",          NULL,       	 NULL,       1 << 7,       1,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.6; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
